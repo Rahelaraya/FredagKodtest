@@ -25,16 +25,16 @@ namespace FredagKodtest
                     // Sortera bokstäverna i ordet för att få en unik nyckel
                     string sorteratOrd = new string(ord.OrderBy(c => c).ToArray());
 
-                    // Använd TryGetValue för effektiv dictionary-uppslagning
-                    if (!anagramGrupper.TryGetValue(sorteratOrd, out List<string> grupp))
-                    {
-                        grupp = new List<string>();
-                        anagramGrupper[sorteratOrd] = grupp;
-                    }
-                    grupp.Add(ord);
+                // Använd TryGetValue för effektiv dictionary-uppslagning
+                if (!anagramGrupper.ContainsKey(sorteratOrd))
+                {
+                    anagramGrupper[sorteratOrd] = new List<string>();
                 }
+                anagramGrupper[sorteratOrd].Add(ord);
 
-                return anagramGrupper.Values.ToList();
+            }
+
+            return anagramGrupper.Values.ToList();
             }
 
             
